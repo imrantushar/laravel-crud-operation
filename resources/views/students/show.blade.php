@@ -7,7 +7,13 @@
         <div class="row">
             <div class="col-12">
                 <h1>About - {{ $student->student_name }}</h1> 
-                <p><a href="/students/{{ $student->id }}/edit">Edit</a></p>   
+                <p><a class="btn btn-primary" href="/students/{{ $student->id }}/edit">Edit</a></p> 
+                <form action="/students/{{ $student->id }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>  
             </div>
             <div class="col-12">
                 <ul>

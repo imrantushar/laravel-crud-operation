@@ -8,14 +8,16 @@
 <input id="classname" class="form-control mb-2" type="text" name="class" placeholder="Class Name" value="{{ old('class') ?? $student->class }}">
 <div>{{ $errors->first('class') }}</div>
 <label for="status">Status: </label>
+
 <select name="status" id="status" class="form-control mb-2">
-    <option value="1">Active</option>
-    <option value="0">Inactive</option>
+    @foreach ($student->activeOptions() as $key => $value)
+        <option value="{{ $key }}" {{ $student->status == $value ? 'selected' : '' }}>{{  $value }}</option>
+    @endforeach
 </select>
 <label for="academy_id">Add Academy:</label>
 <select name="academy_id" id="academy_id" class="form-control mb-2">
     @foreach ($academy as $item)
-        <option value="{{ $item->id }}">{{ $item->name }}</option>
+        <option value="{{ $item->id }}" {{ $item->id == $student->academy_id ? 'selected' : '' }}>{{ $item->name }}</option>
     @endforeach
 </select>
 

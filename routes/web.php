@@ -11,15 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/students', 'studentController');
+Auth::routes();
 
 
-
-Route::get('/students', 'studentController@index');
-Route::post('/students', 'studentController@store');
-Route::get('/students/create', 'studentController@create');
-Route::get('/students/{student}', 'studentController@show');
-Route::get('/students/{student}/edit', 'studentController@edit');
-Route::patch('/students/{student}', 'studentController@update');
